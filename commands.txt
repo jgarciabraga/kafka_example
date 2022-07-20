@@ -1,0 +1,16 @@
+#start zookeeper server
+#in bin folder frmom kafka instalation, find zookeeper-server-start.sh
+#execute
+./zookeeper-server-start.sh ../config/zookeeper.properties
+#change the confi file in server.properties
+#create three kafka broker
+./kafka-server-start.sh ../config/server.properties0
+./kafka-server-start.sh ../config/server.properties1
+./kafka-server-start.sh ../config/server.properties1
+#enter in zookeeper to check the brokers
+./zookeeper-shell.sh localhost:2181
+ls /brokers/ids
+#create a topic in broker
+./kafka-topics.sh --bootstrap-server localhost:9092 --topic elastic --create --partitions 3 --replication-factor 3
+#list the topics in broker
+./kafka-topics.sh --bootstrap-server localhost:9092 --list
